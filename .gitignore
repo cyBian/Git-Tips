@@ -1,0 +1,6 @@
+
+# 忽略markdown pdf
+markdown-cheatsheet-online.pdf
+*.docx
+*.pptx
+

@@ -128,19 +128,19 @@ git checkout -b dev
 ```
 git switch -c dev
 ```
-**查看当前分支 **
+**查看当前分支** 
 
 ```
 git branch
 ```
 **在当前分支操作并提交**
 
-**``dev`` 分支工作完成后，切换回``master``主分支 **
+**``dev`` 分支工作完成后，切换回``master``主分支** 
 
 ```
 git checkout master
 ```
-**将``dev``分支上内容合并到主分支``master`` ** 
+**将``dev``分支上内容合并到主分支``master``**  
 
 ```
 git merge dev
@@ -177,7 +177,7 @@ git cherry-pick [commit_id]
 git branch -D <branch_name>
 ```
 
-**从远程抓取分支**
+**从远程抓取分支** 
 
 ```
 git pull
@@ -189,7 +189,7 @@ git pull
 git checkout -b branch_name origin/branch_name
 ```
 
-**关联本地分支和远程分支**
+**关联本地分支和远程分支** 
 
 ```
 git branchn --set-upstrem branch_name origin/branch_name

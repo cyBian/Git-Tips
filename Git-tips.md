@@ -111,7 +111,7 @@ git push origin master
 git branch dev
 ```
 
-**切换到 ``dev`` 分支 **
+**切换到 ``dev`` 分支**
 
 ``` git
 git checkout dev

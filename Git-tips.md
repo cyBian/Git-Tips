@@ -103,5 +103,182 @@ git push origin master
 
 所谓的**glob模式**是指shell所使用的简化了的正则表达式。星号 ``(*)`` 匹配零个或多个任意字符；[abc] 匹配任何一个列在方括号中的字符；问号 ``(?)``只匹配一个任意字符；如果方括号中使用短划线分隔两个字符，表示所有在这两个字符范围内的都可以匹配（比如[0-9]表示匹配所有0-9的数据）。使用两个星号（**）表示匹配任意中间目录。  
 
+#### 4. 分支管理 
 
+**创建``dev``分支**
+
+``` git
+git branch dev
+```
+
+**切换到 ``dev`` 分支 **
+
+``` git
+git checkout dev
+```
+在git 2.23版本之后可以使用switch命令进行分支切换
+```
+git switch master
+```
+或者``git checkout`` 命令加上 ``-b``参数表示创建并切换
+``` git
+git checkout -b dev
+```
+或者
+```
+git switch -c dev
+```
+**查看当前分支 **
+
+```
+git branch
+```
+**在当前分支操作并提交**
+
+**``dev`` 分支工作完成后，切换回``master``主分支 **
+
+```
+git checkout master
+```
+**将``dev``分支上内容合并到主分支``master`` **
+
+```
+git merge dev
+```
+合并分支时Git一般默认会用``Fast forward ``模式，但是此模式下，删除分支后，会丢掉分支信息。因此，可以选择禁用``Fast forward`` 模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。
+
+```
+git merge --no-ff -m 'merge with no-ff' dev
+```
+
+> ``git merge`` 命令用于合并指定分支到当前分支
+
+**删除分支**
+
+```
+git branch -d dev
+```
+
+**查看分支合并图**
+
+```
+git log --graph
+```
+
+**复制特定提交到当前分支**
+
+```
+git cherry-pick [commit_id]
+```
+
+**强行删除没有合并过的分支**
+
+```
+git branch -D <branch_name>
+```
+
+**从远程抓取分支**
+
+```
+git pull
+```
+
+**在本地创建和远程对应的分支，本地和远程分支名称最好一致**
+
+```
+git checkout -b branch_name origin/branch_name
+```
+
+**关联本地分支和远程分支**
+
+```
+git branchn --set-upstrem branch_name origin/branch_name
+```
+
+##### Bug 分支(使用git stash命令保存和恢复进度)
+
+我们有时会遇到这样的情况，正在dev分支开发新功能，做到一半有人过来反馈一个bug，让马上解决，但是新功能做到一半又不想提交，这时就可以使用``git stash``命令先把当前进度保存起来，然后切换到另一个分支去修改bug，修改完提交后，再切回dev分支，使用``git stash pop`` 来恢复之前的进度继续开发新功能。
+
+* 保存当前进度
+
+  ```
+  git stash 
+  git stash save 'message' # 添加注释
+  ```
+
+* 显示保存进度列表
+
+  ```
+  git stash list
+  ```
+
+* 恢复最新进度到工作区
+
+  ```
+  git stash apply [stash_id] 
+  git stash pop [stash_id]  # 通过此命令恢复后，会删除当前进度
+  ```
+
+* 删除一个存储的进度
+
+  ```
+  git stash drop [stash_id]
+  git stash clear  # 删除所有存储的进度
+  ```
+
+#### 5. 标签管理
+
+**创建标签**
+
+```
+git tag <tag_name>
+```
+
+**查看所有标签**
+
+```
+git tag
+```
+
+> NOTE：默认标签是打在最新提交的commit的上的
+
+**查看标签信息**
+
+```
+git show <tag_name>
+```
+
+**指定标签信息**
+
+```
+git tag -a <tag_name> -m 'message'
+```
+
+**推送标签**
+
+推送本地标签
+
+```
+git push origin <tag_name>
+```
+
+推送全部未推送过的标签
+
+```
+git push origin --tags
+```
+
+**删除标签**
+
+删除本地标签
+
+```
+git tag -d <tag_name>
+```
+
+删除远程标签
+
+```
+git push origin :refs/tags/<tag_name>
+```
 

@@ -90,7 +90,32 @@ git remote -v
 git push origin master
 ```
 
-#### 3. 忽略文件 
+#### 3. 版本回退
+
+``git reset ``命令主要有三个选项：``git reset --soft; git reset --mixed; git rest --hard``
+
+git reset 产生影响
+| 选项   | HEAD | 索引 | 工作目录 |
+| :------:| :----: | :----: | :------: |
+| --soft | 是   | 否   |    否    |
+| --mixed | 是   | 是   |    否    |
+| --hard | 是   | 是   |    是    |
+
+回退到之前的版本
+
+```
+git reset --hard <commit_id>
+git reset --hard HEAD^
+```
+> ``HEAD^`` 是回退到前一个版本，``HEAD^^``回退到前两个版本，以此类推
+
+查看所有操作记录( 包括所有 commit 和 reset )
+```
+git reflog
+```
+
+
+#### 4. 忽略文件 
 
 将无需纳入Git管理的文件添加到创建的``.gitignore``的忽略文件中，列出要忽略文件的模式。
 
@@ -103,7 +128,7 @@ git push origin master
 
 所谓的**glob模式**是指shell所使用的简化了的正则表达式。星号 ``(*)`` 匹配零个或多个任意字符；[abc] 匹配任何一个列在方括号中的字符；问号 ``(?)``只匹配一个任意字符；如果方括号中使用短划线分隔两个字符，表示所有在这两个字符范围内的都可以匹配（比如[0-9]表示匹配所有0-9的数据）。使用两个星号（**）表示匹配任意中间目录。  
 
-#### 4. 分支管理 
+#### 5. 分支管理 
 
 使用分支意味着你可以从开发主线上分离开来，在不影响主线的同时继续工作。Git 分支，其本质仅仅是指向提交对象的可变指针。
 
@@ -196,7 +221,7 @@ git checkout -b branch_name origin/branch_name
 **关联本地分支和远程分支** 
 
 ```
-git branchn --set-upstrem branch_name origin/branch_name
+git branch --set-upstrem branch_name origin/branch_name
 ```
 
 ##### Bug 分支(使用git stash命令保存和恢复进度)
@@ -230,7 +255,7 @@ git branchn --set-upstrem branch_name origin/branch_name
   git stash clear  # 删除所有存储的进度
   ```
 
-#### 5. 标签管理
+#### 6. 标签管理
 
 **创建标签**
 

@@ -311,3 +311,36 @@ git tag -d <tag_name>
 git push origin :refs/tags/<tag_name>
 ```
 
+#### 7. SSH配置及使用
+
+**检查是否存在ssh key**
+
+```
+cd ~/.ssh
+```
+
+> 查看是否存在 ``id_rsa`` 和 ``id_rsa.pub`` 两个文件
+
+**生成密钥**
+
+```
+ssh-keygen -t rsa -C "username@xxx.com"
+```
+
+> 连续三个回车之后，可以得到 ``id_rsa`` 和 ``id_rsa.pub``两个文件
+
+**登录github，添加ssh**
+
+讲``id_rsa.pub``文件中的内容添加到``settings -> SSH and GPG keys -> New SSH key``
+
+**测试**
+
+```
+ssh -T git@github.com
+```
+
+> 你将会看到：
+>
+> Hi username! You've successfully authenticated, but Github does not provide shell access.
+
+说明SSH配置成功！

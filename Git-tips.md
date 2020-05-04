@@ -137,13 +137,12 @@ git reflog
 ``` git
 git branch dev
 ```
+> 创建分支实际上只是为你创建了一个可以移动的新的指针。
 
 **克隆指定分支**
 ``` git
 git clone -b <branch_name> <url>
 ```
-
-> 创建分支实际上只是为你创建了一个可以移动的新的指针。
 
 **切换到 ``dev`` 分支** 
 

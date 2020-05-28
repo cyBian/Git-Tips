@@ -89,6 +89,13 @@ git remote -v
 ```
 git push origin master
 ```
+8. 删除远端文件
+```git
+git rm -r -n --cached <filename>  # -n 不会删除任何文件，仅展示此命令要删除的文件列表
+git rm -r --cached <filename>     # 将文件从远端删除
+git commit -m 'delete filename' 
+git push origin master
+```
 
 #### 3. 版本回退
 

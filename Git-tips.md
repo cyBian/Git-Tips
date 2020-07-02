@@ -342,7 +342,7 @@ ssh-keygen -t rsa -C "username@xxx.com"
 
 **登录github，添加ssh**
 
-讲``id_rsa.pub``文件中的内容添加到``settings -> SSH and GPG keys -> New SSH key``
+将``id_rsa.pub``文件中的内容添加到``settings -> SSH and GPG keys -> New SSH key``
 
 **测试**
 
@@ -355,3 +355,20 @@ ssh -T git@github.com
 > Hi username! You've successfully authenticated, but Github does not provide shell access.
 
 说明SSH配置成功！
+
+#### 8. 常见问题解决方案
++ 在git pull时出现如下报错：
+  ``` git
+  error: You have not concluded your merge (MERGE_HEAD exists).
+  hint: Please, commit your changes before merge.
+  fatal: Existing because of unfished merge.
+  ```
+解决方案：
+  1. 先commit再pull或者merge
+  2. 放弃本地修改，直接覆盖
+  ```
+  git reset --hard
+  git pull
+  ```
+  
+  
